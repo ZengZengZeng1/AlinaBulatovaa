@@ -1,0 +1,8 @@
+{
+  "name": "Alina Portfolio - AI Enhanced",
+  "description": "A cutting-edge developer portfolio featuring glassmorphic design, interactive skill visualizations, and an integrated Gemini-powered AI assistant to answer recruiter questions.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

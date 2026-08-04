@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
     <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex flex-wrap items-center justify-between gap-4">
       <div className="flex gap-3">
         <button onClick={() => scrollTo('hero')} className="pill text-neon font-bold text-xs">
-          Alina Bulatova
+          Alina Zenger
         </button>
         <button className="pill text-neon flex items-center gap-2 text-xs font-bold">
           <div className="w-4 h-4 rounded-full bg-neon flex items-center justify-center">

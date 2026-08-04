@@ -2,7 +2,7 @@
 import { Project, Skill } from './types';
 
 export const PERSONAL_INFO = {
-  name: "Alina Bulatova",
+  name: "Alina Zenger",
   role: "Lead Creative Producer",
   tags: ["Video", "Interactive", "2D/3D", "Playable", "Mini Apps"],
   bio: "7+ лет в креативной индустрии. Создаю продукты на стыке видео, интерактива и технологий. Лидировала команды до 10 человек в VK, Яндекс Картах и международных стартапах.",
@@ -54,6 +54,26 @@ export const EXTRA_EXPERIENCE = [
 
 export const CASE_STUDIES = [
   {
+    id: "tribe",
+    company: "Трайб",
+    role: "Creator // Creative Copywriter",
+    period: "Фриланс, проектная занятость",
+    task: "Студия Трайб — креативная студия. Проектная работа на фрилансе: разработка интерактивных и продающих форматов (мини-игры, квизы) для брендов внутри онлайн-магазинов — по модели Самоката и Купера. Моя роль: придумывала концепции интерактивов для тендеров и клиентских проектов — от идеи до визуализации интерфейса.",
+    realization: [
+      "Разрабатывала концепции мини-игр и квизов для брендов внутри онлайн-магазинов — всего около 20 концепций",
+      "Работала с клиентами: Яндекс Плюс, Очаково, Балтика 0, J7, Zemma и др.",
+      "Придумывала нейминг для сервиса доставки Азбуки Вкуса, разрабатывала лайн и саблайн как сопровождение нейминга",
+      "Генерила мокапы интерфейса для тендерных идей — визуализация будущих игр для презентации клиенту"
+    ],
+    imageUrl: "",
+    folderUrl: "",
+    presentations: [
+      { title: "Купер & Яндекс Плюс", url: "https://docs.google.com/presentation/d/1-Bbr5-ghVbr9OeZa2Za4KYiQKJQmwhdv/embed?start=false&loop=false&delayms=3000" },
+      { title: "Rich & Трайб", url: "https://docs.google.com/presentation/d/1qxPs7-YAPbhzwAFCyD6yG6XvVKrAjzUf/embed?start=false&loop=false&delayms=3000" },
+      { title: "Самокат & Очаково", url: "https://docs.google.com/presentation/d/1LQkliUjnBhSaXeN0xf0XyEE4bvO9Srbg/embed?start=false&loop=false&delayms=3000" }
+    ]
+  },
+  {
     id: "vk",
     company: "VK",
     role: "Creator // Creative Copywriter",
@@ -103,7 +123,7 @@ export const SKILLS_LIST = {
   tech: ["VK Mini Apps", "Telegram bots"]
 };
 
-export const SYSTEM_PROMPT = `You are Alina Bulatova's AI Assistant. 
+export const SYSTEM_PROMPT = `You are Alina Zenger's AI Assistant. 
 Alina is a Lead Creative Producer with 7+ years of experience (current year is 2026).
 Experience: VK, Yandex, Maree, RELIZ.
 Expertise: Interactive formats, Playable ads, Motion/Video production.

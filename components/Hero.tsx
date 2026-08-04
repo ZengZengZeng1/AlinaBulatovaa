@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
                 <img 
                   src={PERSONAL_INFO.heroPhoto} 
                   className="w-full h-full object-cover transition-all duration-700 ease-in-out scale-100 hover:scale-105"
-                  alt="Alina Bulatova"
+                  alt="Alina Zenger"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = "https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=1000&auto=format&fit=crop";

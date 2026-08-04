@@ -32,7 +32,7 @@ const AIChatAssistant: React.FC = () => {
       {isOpen ? (
         <div className="w-[350px] h-[500px] bg-black border-2 border-neon rounded-3xl flex flex-col shadow-[0_0_30px_rgba(206,255,0,0.2)] overflow-hidden">
           <div className="p-4 bg-neon text-dark flex justify-between items-center font-bold uppercase tracking-widest text-xs">
-            <span>Agent / Bulatova</span>
+            <span>Agent / Zenger</span>
             <button onClick={() => setIsOpen(false)}>×</button>
           </div>
 

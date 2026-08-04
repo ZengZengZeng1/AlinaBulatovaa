@@ -24,14 +24,14 @@ const Footer: React.FC = () => {
         
         <div className="w-full md:w-1/3 flex flex-col justify-end text-right">
            <p className="text-lg font-bold uppercase tracking-tight mb-10 opacity-70">
-             Lead Creative Producer <br/> Alina Bulatova — 2026
+             Lead Creative Producer <br/> Alina Zenger — 2026
            </p>
            <div className="font-brutal text-6xl">2026</div>
         </div>
       </div>
       
       <div className="mt-32 pt-10 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4 font-bold text-[10px] uppercase tracking-[0.3em]">
-        <span>ALINA BULATOVA PORTFOLIO</span>
+        <span>ALINA ZENGER PORTFOLIO</span>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-black animate-pulse" />
           <span>Status: Available for hire</span>

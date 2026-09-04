@@ -3,7 +3,7 @@ import { Project, Skill } from './types';
 
 export const PERSONAL_INFO = {
   name: "Alina Zenger",
-  role: "Lead Creative Producer",
+  role: "Creator // Creative Copywriter",
   tags: ["Video", "Interactive", "2D/3D", "Playable", "Mini Apps"],
   bio: "7+ лет в креативной индустрии. Создаю продукты на стыке видео, интерактива и технологий. Лидировала команды до 10 человек в VK, Яндекс Картах и международных стартапах.",
   location: "Remote / Worldwide",

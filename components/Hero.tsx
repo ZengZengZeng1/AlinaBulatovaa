@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
           </div>
           
           <h1 className="font-brutal text-[14vw] md:text-[10vw] leading-[0.85] mb-6">
-            Lead <br/> Creative <br/> Producer
+            Creator <br/> Creative <br/> Copywriter
           </h1>
         </div>
 

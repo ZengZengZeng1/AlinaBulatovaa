@@ -1,11 +1,8 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { CASE_STUDIES } from '../constants';
 
 const ProjectsSection: React.FC = () => {
-  const [openCaseId, setOpenCaseId] = useState<string | null>(null);
-  const openCase = CASE_STUDIES.find((c) => c.id === openCaseId) as any;
-
   return (
     <section id="projects" className="py-24 px-6 md:px-10">
       <div className="pill border-neon text-neon inline-flex items-center gap-2 text-xs font-bold mb-16 uppercase tracking-widest">
@@ -14,8 +11,8 @@ const ProjectsSection: React.FC = () => {
 
       <div className="space-y-32">
         {CASE_STUDIES.map((caseStudy, idx) => {
-          const hasPresentations = 'presentations' in caseStudy && caseStudy.presentations && caseStudy.presentations.length > 0;
-          const hasDetail = 'detail' in caseStudy && !!(caseStudy as any).detail;
+          const hasPresentations = 'presentations' in caseStudy && (caseStudy as any).presentations && (caseStudy as any).presentations.length > 0;
+          const hasImages = 'images' in caseStudy && (caseStudy as any).images && (caseStudy as any).images.length > 0;
           return (
           <div key={caseStudy.id} className="space-y-10">
             <div className={`flex flex-col ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-10 md:gap-20 items-center`}>
@@ -51,16 +48,18 @@ const ProjectsSection: React.FC = () => {
                   <p className="text-xl font-medium leading-snug">{caseStudy.task}</p>
                 </div>
 
-                <div className="space-y-4">
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Реализация:</h4>
-                  <ul className="grid grid-cols-1 gap-3">
-                    {caseStudy.realization.map((step, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
-                        <span className="text-neon">✦</span> {step}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {caseStudy.realization.length > 0 && (
+                  <div className="space-y-4">
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Реализация:</h4>
+                    <ul className="grid grid-cols-1 gap-3">
+                      {caseStudy.realization.map((step, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
+                          <span className="text-neon">✦</span> {step}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* Call to action button - only when there's a folder link */}
                 {caseStudy.folderUrl && (
@@ -82,24 +81,6 @@ const ProjectsSection: React.FC = () => {
                   </div>
                 )}
 
-                {/* Full case detail - opens a dedicated full-screen view */}
-                {hasDetail && (
-                  <div className="pt-4">
-                    <button
-                      onClick={() => setOpenCaseId(caseStudy.id)}
-                      className="inline-flex items-center gap-4 px-8 py-3 border-2 border-neon text-neon font-brutal text-md rounded-full hover:bg-neon hover:text-dark transition-all duration-300 group/btn"
-                    >
-                      Читать кейс полностью
-                      <svg 
-                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
-                        className="transform group-hover/btn:translate-x-1 transition-transform"
-                      >
-                        <path d="M7 17L17 7M17 7H7M17 7V17" />
-                      </svg>
-                    </button>
-                  </div>
-                )}
-
                 <div className="pt-4 flex items-center gap-3">
                   <div className="w-8 h-[1px] bg-neon/30" />
                   <p className="font-bold text-[10px] uppercase tracking-[0.2em] text-neon/60">
@@ -114,7 +95,7 @@ const ProjectsSection: React.FC = () => {
               <div className="space-y-4">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Примеры кейсов:</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {caseStudy.presentations!.map((pres, i) => (
+                  {(caseStudy as any).presentations.map((pres: { title: string; url: string }, i: number) => (
                     <div key={i} className="space-y-2">
                       <div className="aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5">
                         <iframe
@@ -131,74 +112,32 @@ const ProjectsSection: React.FC = () => {
                 </div>
               </div>
             )}
+
+            {/* Additional photo gallery */}
+            {hasImages && (
+              <div className="space-y-4">
+                <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Визуализация:</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {(caseStudy as any).images.map((img: string, i: number) => (
+                    <div key={i} className="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                      <img
+                        src={img}
+                        alt={`${caseStudy.company} ${i + 1}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = `https://via.placeholder.com/400x500/111/fff?text=${caseStudy.company}`;
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           );
         })}
       </div>
-
-      {/* Full-screen case detail overlay */}
-      {openCase && (
-        <div
-          className="fixed inset-0 z-50 bg-dark/95 backdrop-blur-sm overflow-y-auto"
-          onClick={() => setOpenCaseId(null)}
-        >
-          <div
-            className="min-h-full max-w-3xl mx-auto px-6 md:px-10 py-16 md:py-24"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setOpenCaseId(null)}
-              className="mb-10 inline-flex items-center gap-3 text-neon font-bold text-xs uppercase tracking-widest hover:opacity-70 transition-opacity"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                <path d="M19 12H5M5 12l7 7M5 12l7-7" />
-              </svg>
-              Назад к кейсам
-            </button>
-
-            <div className="inline-block px-4 py-1 bg-neon text-dark font-bold text-[10px] uppercase tracking-widest rounded-full mb-6">
-              {openCase.role}
-            </div>
-            <h3 className="font-brutal text-4xl md:text-6xl mb-2">{openCase.company}</h3>
-            <p className="font-bold text-[10px] uppercase tracking-[0.2em] text-neon/60 mb-12">{openCase.period}</p>
-
-            {openCase.imageUrl && (
-              <div className="aspect-video rounded-[30px] overflow-hidden border border-white/10 mb-12">
-                <img src={openCase.imageUrl} alt={openCase.company} className="w-full h-full object-cover" />
-              </div>
-            )}
-
-            <div className="space-y-4 mb-10">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Задача:</h4>
-              <p className="text-xl font-medium leading-snug">{openCase.task}</p>
-            </div>
-
-            {openCase.detail?.sections?.map((section: { title: string; text: string }, i: number) => (
-              <div key={i} className="space-y-4 mb-10">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">{section.title}:</h4>
-                <p className="text-xl font-medium leading-snug whitespace-pre-line">{section.text}</p>
-              </div>
-            ))}
-
-            {openCase.detail?.myRole && (
-              <div className="space-y-4 mb-10">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-white/40">Моя роль:</h4>
-                <p className="text-sm font-bold text-white/80">{openCase.detail.myRole}</p>
-              </div>
-            )}
-
-            {openCase.detail?.images?.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-                {openCase.detail.images.map((img: string, i: number) => (
-                  <div key={i} className="aspect-[4/5] rounded-[30px] overflow-hidden border border-white/10">
-                    <img src={img} alt={`${openCase.company} ${i + 1}`} className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 };
